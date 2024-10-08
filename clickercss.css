@@ -32,8 +32,8 @@ body, html {
 #incrementBtn {
   display: block;
   margin: 20px auto;
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 250px;
   cursor: pointer;
 }
 

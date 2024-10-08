@@ -86,7 +86,7 @@ autoClickers.forEach((autoClicker) => {
 setInterval(() => {
   counter += autoClickValue;
   updateCounterDisplay();
-}, 1); // Toutes les 1000 millisecondes (1 seconde)
+}, 1000); // Toutes les 1000 millisecondes (1 seconde)
 
 // Mettre à jour l'affichage des clics automatiques au démarrage
 updateAutoClickDisplay();

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incrémentation de nombre - Clicker Game</title>
+  <link rel="stylesheet" href="clickercss.css">
+</head>
+<body>
+  <div class="container">
+    <h2 id="autoClickValueDisplay">Clics automatiques : 0 $ par seconde</h2> <!-- Affichage des clics automatiques -->
+    <h1 id="counter">0 $</h1>
+    <img src="Logo_sphimx.png" alt="Incrémenter" id="incrementBtn">
+  </div>
+
+  <div class="sidebar">
+    <h2>Améliorations</h2>
+    <button class="upgrade" id="upgrade1" data-cost="10">+1 $ par clic (10 $)</button>
+    <button class="upgrade" id="upgrade2" data-cost="50">+5 $ par clic (50 $)</button>
+    <button class="upgrade" id="upgrade3" data-cost="100">+10 $ par clic (100 $)</button>
+
+    <h2>Clickers automatiques</h2>
+    <button class="auto-clicker" id="autoClicker1" data-cost="100">+1 $ par seconde (100 $)</button>
+    <button class="auto-clicker" id="autoClicker2" data-cost="500">+5 $ par seconde (500 $)</button>
+    <button class="auto-clicker" id="autoClicker3" data-cost="1000">+10 $ par seconde (1000 $)</button>
+  </div>
+
+  <script src="clickerjs.js"></script>
+</body>
+</html>

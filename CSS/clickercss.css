@@ -1,0 +1,74 @@
+/* Centrer la page globalement */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Styles pour l'affichage des clics automatiques */
+#autoClickValueDisplay {
+  font-size: 16px; /* Rendre le texte plus petit */
+  color: #333; /* Couleur du texte */
+  text-align: center;
+  margin-top: 10px; /* Ajustement pour l'espace au-dessus */
+  position: fixed;
+  top: 10px; /* Placer en haut de la page */
+  width: 100%;
+  z-index: 1000; /* Pour s'assurer que c'est au-dessus de tout */
+}
+
+/* Style pour le compteur */
+#counter {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Styles pour l'image du bouton d'incrémentation */
+#incrementBtn {
+  display: block;
+  margin: 20px auto;
+  width: 300px;
+  height: 250px;
+  cursor: pointer;
+}
+
+/* Styles pour la sidebar des améliorations */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

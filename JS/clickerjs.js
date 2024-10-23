@@ -1,13 +1,17 @@
 let counter = 0;
 let incrementValue = 1;
 let autoClickValue = 0; // Valeur générée automatiquement par seconde
+let autoClickerInterval = null; // Intervalle de clic automatique
+let isMusicPlaying = false; // État de la musique
 
 // Sélection des éléments
 const counterDisplay = document.getElementById('counter');
-const autoClickValueDisplay = document.getElementById('autoClickValueDisplay'); // Sélection de l'affichage des clics automatiques
+const autoClickValueDisplay = document.getElementById('autoClickValueDisplay');
 const incrementBtn = document.getElementById('incrementBtn');
 const upgrades = document.querySelectorAll('.upgrade');
 const autoClickers = document.querySelectorAll('.auto-clicker');
+const musicToggleBtn = document.getElementById('musicToggleBtn');
+const music = document.getElementById('backgroundMusic');
 
 // Fonction pour mettre à jour l'affichage du compteur
 function updateCounterDisplay() {
@@ -19,13 +23,13 @@ function updateAutoClickDisplay() {
   autoClickValueDisplay.textContent = `Clics automatiques : ${autoClickValue} $ par seconde`;
 }
 
-// Incrémentation lors du clic sur le bouton principal
+// Fonction pour gérer les clics manuels
 incrementBtn.addEventListener('click', () => {
   counter += incrementValue;
   updateCounterDisplay();
 });
 
-// Gestion des améliorations de clic manuel
+// Fonction pour gérer les améliorations de clic manuel
 upgrades.forEach((upgrade) => {
   upgrade.addEventListener('click', () => {
     let cost = parseInt(upgrade.getAttribute('data-cost'));
@@ -45,12 +49,48 @@ upgrades.forEach((upgrade) => {
       // Augmenter le coût de l'amélioration après achat
       cost = Math.ceil(cost * 1.5);
       upgrade.setAttribute('data-cost', cost);
-      upgrade.textContent = `+${upgrade.id === 'upgrade1' ? '1' : upgrade.id === 'upgrade2' ? '5' : '10'} $ par clic (${cost} $)`;
+      // Mise à jour du texte avec le nom du bouton et l'effet
+      upgrade.textContent = `Bouton ${upgrade.id.charAt(upgrade.id.length - 1)}: +${upgrade.id === 'upgrade1' ? '1' : upgrade.id === 'upgrade2' ? '5' : '10'} $ par clic (${cost} $)`;
     } else {
       alert("Pas assez d'argent pour acheter cette amélioration !");
     }
   });
 });
+
+// Fonction pour démarrer ou arrêter la musique
+function toggleMusic() {
+  if (isMusicPlaying) {
+    music.pause(); // Arrête la musique
+    musicToggleBtn.src = 'speaker_off.jpg'; // Change l'image pour le haut-parleur barré
+  } else {
+    music.play().catch((error) => {
+      console.log('Erreur lors du démarrage de la musique :', error);
+    });
+    musicToggleBtn.src = 'speaker_on.jpg'; // Change l'image pour le haut-parleur activé
+  }
+  isMusicPlaying = !isMusicPlaying; // Inverse l'état
+}
+
+// Événement pour cliquer sur le bouton de musique
+musicToggleBtn.addEventListener('click', toggleMusic);
+
+// Fonction pour mettre à jour l'auto-clicker avec la nouvelle valeur par seconde
+function startAutoClicker() {
+  // Si un intervalle existe déjà, on l'annule pour en recréer un avec les nouvelles valeurs
+  if (autoClickerInterval) {
+    clearInterval(autoClickerInterval);
+  }
+
+  // Si autoClickValue > 0, on calcule l'intervalle en millisecondes entre chaque incrément
+  if (autoClickValue > 0) {
+    const intervalTime = 1000 / autoClickValue; // Temps entre chaque clic automatique
+
+    autoClickerInterval = setInterval(() => {
+      counter += 1; // On incrémente de 1 à chaque "clic"
+      updateCounterDisplay();
+    }, intervalTime); // On ajuste le temps entre chaque clic en fonction de autoClickValue
+  }
+}
 
 // Gestion des clickers automatiques
 autoClickers.forEach((autoClicker) => {
@@ -72,6 +112,9 @@ autoClickers.forEach((autoClicker) => {
       // Mettre à jour l'affichage des clics automatiques
       updateAutoClickDisplay();
 
+      // Redémarrer l'auto-clicker avec les nouvelles valeurs
+      startAutoClicker();
+
       // Augmenter le coût de l'amélioration automatique après achat
       cost = Math.ceil(cost * 1.5);
       autoClicker.setAttribute('data-cost', cost);
@@ -82,11 +125,5 @@ autoClickers.forEach((autoClicker) => {
   });
 });
 
-// Fonction pour générer de l'argent automatiquement chaque seconde
-setInterval(() => {
-  counter += autoClickValue;
-  updateCounterDisplay();
-}, 1000); // Toutes les 1000 millisecondes (1 seconde)
-
-// Mettre à jour l'affichage des clics automatiques au démarrage
-updateAutoClickDisplay();
+// Démarrer l'auto-clicker au démarrage
+startAutoClicker();

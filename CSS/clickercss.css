@@ -4,9 +4,8 @@ body, html {
   padding: 0;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Styles pour l'affichage des clics automatiques */
@@ -32,23 +31,24 @@ body, html {
 #incrementBtn {
   display: block;
   margin: 20px auto;
-  width: 300px;
-  height: 250px;
+  width: 350px;
+  height: 300px;
   cursor: pointer;
 }
 
 /* Styles pour la sidebar des améliorations */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 200px;
-  height: 100%;
-  background-color: #f4f4f4;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+#menu {
+  position: absolute; /* Fixe le menu pour éviter les problèmes de positionnement */
+  left: 0; /* Alignement à gauche */
+  top: 100px; /* Écart du haut de la page */
+  width: 200px; /* Largeur du menu */
+  background-color: #f4f4f4; /* Couleur de fond */
+  padding: 20px; /* Espacement interne */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Ombre pour le menu */
+  z-index: 100; /* Pour que le menu soit au-dessus des autres éléments */
 }
 
+/* Styles pour les boutons dans le menu */
 button {
   width: 100%;
   padding: 10px;
@@ -63,12 +63,12 @@ button:hover {
   background-color: #0056b3;
 }
 
-.container {
-  margin-left: 200px;
-  width: calc(100% - 200px);
+/* Container principal pour centrer le contenu */
+#game-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-left: 220px; /* Espace pour le menu sur le côté */
 }

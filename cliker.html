@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Incrémentation de nombre - Clicker Game</title>
-  <link rel="stylesheet" href="clickercss.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <link rel="stylesheet" href="clickercss.css">
 </head>
 <body>
-  <div class="container">
-    <h2 id="autoClickValueDisplay">Clics automatiques : 0 $ par seconde</h2> <!-- Affichage des clics automatiques -->
-    <h1 id="counter">0 $</h1>
-    <img src="Logo_sphimx.png" alt="Incrémenter" id="incrementBtn">
-  </div>
+    <!-- Ajout de l'audio pour la musique de fond, sans contrôles -->
+    <audio id="backgroundMusic" src="yohan_vacances.mp3" loop></audio>
+    
+    <div id="game-container">
+        <h1 id="autoClickValueDisplay"></h1>
+        <div id="counter">0 $</div>
+        <img id="incrementBtn" src="Logo_sphimx.png" alt="Bouton Clic">
+        <div id="menu">
+            <h2>Améliorations</h2>
+				<button class="upgrade" id="upgrade1" data-cost="10"><center>Café</center><br> +1 $ par clic (10 $)</button>
+				<button class="upgrade" id="upgrade2" data-cost="20"><center>Thé</center><br> +5 $ par clic (20 $)</button>
+				<button class="upgrade" id="upgrade3" data-cost="30"><center>Cappuccino</center><br> +10 $ par clic (30 $)</button>
 
-  <div class="sidebar">
-    <h2>Améliorations</h2>
-    <button class="upgrade" id="upgrade1" data-cost="10">+1 $ par clic (10 $)</button>
-    <button class="upgrade" id="upgrade2" data-cost="50">+5 $ par clic (50 $)</button>
-    <button class="upgrade" id="upgrade3" data-cost="100">+10 $ par clic (100 $)</button>
+            
+            <h2>Clics automatiques</h2>
+            <button class="auto-clicker" id="autoClicker1" data-cost="25"><center>Boissons fraîches</center><br>+1 $ par seconde (25 $)</button>
+            <button class="auto-clicker" id="autoClicker2" data-cost="100"><center>Snacks</center><br>+5 $ par seconde (100 $)</button>
+            <button class="auto-clicker" id="autoClicker3" data-cost="250"><center>Opérations</center><br>+10 $ par seconde (250 $)</button>
+        </div>
+    </div>
+    
+    <!-- Bouton pour contrôler la musique -->
+    <img id="musicToggleBtn" src="speaker_off.jpg" alt="Haut-parleur barré" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; width: 50px; height: 50px;">
 
-    <h2>Clickers automatiques</h2>
-    <button class="auto-clicker" id="autoClicker1" data-cost="100">+1 $ par seconde (100 $)</button>
-    <button class="auto-clicker" id="autoClicker2" data-cost="500">+5 $ par seconde (500 $)</button>
-    <button class="auto-clicker" id="autoClicker3" data-cost="1000">+10 $ par seconde (1000 $)</button>
-  </div>
-
-  <script src="clickerjs.js"></script>
+    <script src="clickerjs.js"></script>
 </body>
+
 </html>

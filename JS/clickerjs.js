@@ -77,32 +77,32 @@ function incrementCounter() {
 incrementBtn.removeEventListener('click', incrementCounter); // Supprimer tout ancien écouteur pour éviter les doublons
 incrementBtn.addEventListener('click', incrementCounter); // Ajouter l'écouteur d'événement
 
-// Fonction pour gérer les améliorations de clic manuel
+//amélioration de clic manuel
 upgrades.forEach((upgrade) => {
   upgrade.addEventListener('click', () => {
     let cost = parseInt(upgrade.getAttribute('data-cost'));
     if (counter >= cost) {
-      counter -= cost; // Déduire le coût de l'amélioration
+      counter -= cost;
       updateCounterDisplay();
 
-      // Augmenter la valeur d'incrémentation en fonction de l'amélioration
-      if (upgrade.id === 'upgrade1') {
-        incrementValue += 1;
-      } else if (upgrade.id === 'upgrade2') {
-        incrementValue += 5;
-      } else if (upgrade.id === 'upgrade3') {
-        incrementValue += 10;
-      }
+      // Augmenter la valeur d'incrémentation
+      if (upgrade.id === 'upgrade1') incrementValue += 1;
+      else if (upgrade.id === 'upgrade2') incrementValue += 5;
+      else if (upgrade.id === 'upgrade3') incrementValue += 10;
 
-      // Augmenter le coût de l'amélioration après achat
+      // Mettre à jour le coût avec format simplifié
       cost = Math.ceil(cost * 1.5);
       upgrade.setAttribute('data-cost', cost);
-      upgrade.textContent = `Bouton ${upgrade.id.charAt(upgrade.id.length - 1)}: +${upgrade.id === 'upgrade1' ? '1' : upgrade.id === 'upgrade2' ? '5' : '10'} $ par clic (${cost} $)`;
+      upgrade.textContent = `Bouton ${upgrade.id.charAt(upgrade.id.length - 1)}: +${upgrade.id === 'upgrade1' ? '1' : upgrade.id === 'upgrade2' ? '5' : '10'} $ par clic (${formatNumber(cost)} $)`;
+
+      // Vérifier les états des boutons après l'achat
+      checkButtonStates();
     } else {
       alert("Vous n'avez pas assez d'argent pour acheter cette amélioration !");
     }
   });
 });
+
 
 // Fonction pour démarrer ou arrêter la musique
 function toggleMusic() {
@@ -145,25 +145,27 @@ autoClickers.forEach((autoClicker) => {
       counter -= cost;
       updateCounterDisplay();
 
-      if (autoClicker.id === 'autoClicker1') {
-        autoClickValue += 1;
-      } else if (autoClicker.id === 'autoClicker2') {
-        autoClickValue += 5;
-      } else if (autoClicker.id === 'autoClicker3') {
-        autoClickValue += 10;
-      }
+      // Augmenter la valeur d'incrémentation automatique
+      if (autoClicker.id === 'autoClicker1') autoClickValue += 1;
+      else if (autoClicker.id === 'autoClicker2') autoClickValue += 5;
+      else if (autoClicker.id === 'autoClicker3') autoClickValue += 10;
 
       updateAutoClickDisplay();
-      startAutoClicker(); // Relancer l'auto-clicker avec la nouvelle valeur
+      startAutoClicker();
 
+      // Mettre à jour le coût avec format simplifié
       cost = Math.ceil(cost * 1.5);
       autoClicker.setAttribute('data-cost', cost);
-      autoClicker.textContent = `+${autoClicker.id === 'autoClicker1' ? '1' : autoClicker.id === 'autoClicker2' ? '5' : '10'} $ par seconde (${cost} $)`;
+      autoClicker.textContent = `+${autoClicker.id === 'autoClicker1' ? '1' : autoClicker.id === 'autoClicker2' ? '5' : '10'} $ par seconde (${formatNumber(cost)} $)`;
+
+      // Vérifier les états des boutons après l'achat
+      checkButtonStates();
     } else {
       alert("Vous n'avez pas assez d'argent pour acheter cette amélioration automatique !");
     }
   });
 });
+
 
 // Fonction de formatage étendue pour les puissances de 10 jusqu'à 10^36
 function formatNumber(value) {

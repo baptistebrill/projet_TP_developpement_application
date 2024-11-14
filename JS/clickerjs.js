@@ -15,10 +15,9 @@ const music = document.getElementById('backgroundMusic');
 
 // Liste des logos selon le montant d'argent atteint
 const logos = {
-  1000: 'Logo_sphimx_10.png',
-  1000000: 'Logo_sphimx_100.png',
-  1000000000: 'Logo_sphimx_1000.png',
-  // Tu peux continuer à ajouter d'autres logos pour 10 000, 100 000, etc.
+  1000: 'Logo_sphimx_soiréeCasino.png',
+  1000000: 'Logo_sphimx_pixel.png',
+  1000000000: 'Logo_sphimx_20ans.png',
 };
 
 // Fonction pour mettre à jour l'affichage du compteur
@@ -40,6 +39,8 @@ function updateLogo() {
     }
   }
 }
+
+
 
 // Fonction pour vérifier si les boutons doivent être activés ou désactivés
 function checkButtonStates() {
@@ -98,7 +99,7 @@ upgrades.forEach((upgrade) => {
       upgrade.setAttribute('data-cost', cost);
       upgrade.textContent = `Bouton ${upgrade.id.charAt(upgrade.id.length - 1)}: +${upgrade.id === 'upgrade1' ? '1' : upgrade.id === 'upgrade2' ? '5' : '10'} $ par clic (${cost} $)`;
     } else {
-      alert("Pas assez d'argent pour acheter cette amélioration !");
+      alert("Vous n'avez pas assez d'argent pour acheter cette amélioration !");
     }
   });
 });
@@ -159,7 +160,7 @@ autoClickers.forEach((autoClicker) => {
       autoClicker.setAttribute('data-cost', cost);
       autoClicker.textContent = `+${autoClicker.id === 'autoClicker1' ? '1' : autoClicker.id === 'autoClicker2' ? '5' : '10'} $ par seconde (${cost} $)`;
     } else {
-      alert("Pas assez d'argent pour acheter cette amélioration automatique !");
+      alert("Vous n'avez pas assez d'argent pour acheter cette amélioration automatique !");
     }
   });
 });
@@ -231,8 +232,6 @@ autoClickers.forEach((autoClicker) => {
     }
   });
 });
-
-
 
 
 // Mettre à jour l'affichage des clics automatiques

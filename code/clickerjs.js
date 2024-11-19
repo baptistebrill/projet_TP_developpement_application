@@ -325,8 +325,8 @@ function showRandomImageTemporarily() {
   tempImage.src = 'Logo_sphimx_octobreRose.png'; // Remplacez par le chemin de l'image souhaitée
   tempImage.alt = 'Image temporaire';
   tempImage.style.position = 'absolute';
-  tempImage.style.top = `${Math.random() * window.innerHeight}px`;
-  tempImage.style.left = `${Math.random() * window.innerWidth}px`;
+  tempImage.style.top = `${Math.random() * 70}%`;
+  tempImage.style.right = `${Math.random() * 83}%`;
   tempImage.style.zIndex = 1000;
   tempImage.style.width = '150px';
   tempImage.style.height = '15f0px';

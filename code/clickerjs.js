@@ -313,6 +313,63 @@ function updateAutoClickDisplay() {
   autoClickValueDisplay.textContent = `Clics automatiques : ${autoClickValue} $ par seconde`;
 }
 
+// Démarrer l'auto-clicker au démarrage
+startAutoClicker();
+
+// Vérifier l'état des boutons lors du chargement initial de la page
+checkButtonStates();
+
+function showRandomImageTemporarily() {
+  // Créer une nouvelle image aléatoire
+  const tempImage = document.createElement('img');
+  tempImage.src = 'Logo_sphimx_octobreRose.png'; // Remplacez par le chemin de l'image souhaitée
+  tempImage.alt = 'Image temporaire';
+  tempImage.style.position = 'absolute';
+  tempImage.style.top = `${Math.random() * window.innerHeight}px`;
+  tempImage.style.left = `${Math.random() * window.innerWidth}px`;
+  tempImage.style.zIndex = 1000;
+  tempImage.style.width = '150px';
+  tempImage.style.height = '15f0px';
+  tempImage.style.cursor = 'pointer'; // Change le curseur pour indiquer qu'il est cliquable
+
+  // Ajouter un événement de clic pour gagner 100 $
+  tempImage.addEventListener('click', () => {
+    counter += 100; // Ajoute 100 $ au compteur
+    updateCounterDisplay(); // Met à jour l'affichage du compteur
+    document.body.removeChild(tempImage); // Supprime l'image une fois cliquée
+  });
+
+  // Ajouter l'image au corps de la page
+  document.body.appendChild(tempImage);
+
+  // Supprimer l'image après une courte durée si elle n'est pas cliquée
+  setTimeout(() => {
+    if (document.body.contains(tempImage)) {
+      document.body.removeChild(tempImage);
+    }
+  }, 1000); // Durée en millisecondes (ici 1 seconde)
+}
+
+// Appeler la fonction à des intervalles aléatoires
+setInterval(showRandomImageTemporarily, Math.random() * 5000 + 3000); // Entre 3 et 8 secondes
+
+let rebirthMultiplier = 1; // Multiplicateur de bonus après Rebirth
+
+function getValidNumber(value, defaultValue = 0) {
+  const num = parseInt(value, 10);
+  return isNaN(num) ? defaultValue : num;
+}
+
+// Exemple d'utilisation dans le code
+upgrades.forEach((upgrade) => {
+  let cost = getValidNumber(upgrade.getAttribute('data-cost'));
+});
+
+counter = isNaN(counter) ? 0 : counter;
+counterDisplay.textContent = formatNumber(counter) + " $";
+
+autoClickValue = isNaN(autoClickValue) ? 0 : autoClickValue;
+startAutoClicker(); // Relancer avec la nouvelle valeur
 
 // Sauvegarde avant la fermeture de la page
 window.addEventListener('beforeunload', (event) => {

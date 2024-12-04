@@ -1,0 +1,90 @@
+/* Centrer la page globalement */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Styles pour l'affichage des clics automatiques */
+#autoClickValueDisplay {
+  font-size: 16px; /* Rendre le texte plus petit */
+  color: #333; /* Couleur du texte */
+  text-align: center;
+  margin-top: 10px; /* Ajustement pour l'espace au-dessus */
+  position: fixed;
+  top: 10px; /* Placer en haut de la page */
+  width: 100%;
+  z-index: 1000; /* Pour s'assurer que c'est au-dessus de tout */
+}
+
+/* Style pour le compteur */
+#counter {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Styles pour l'image du bouton d'incrémentation */
+#incrementBtn {
+  display: block;
+  margin: 20px auto;
+  width: 400px;
+  height: 350px;
+  cursor: pointer;
+}
+
+/* Styles pour la sidebar des améliorations */
+#menu {
+  position: absolute; /* Fixe le menu pour éviter les problèmes de positionnement */
+  left: 0; /* Alignement à gauche */
+  top: 100px; /* Écart du haut de la page */
+  width: 200px; /* Largeur du menu */
+  background-color: #f4f4f4; /* Couleur de fond */
+  padding: 20px; /* Espacement interne */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Ombre pour le menu */
+  z-index: 100; /* Pour que le menu soit au-dessus des autres éléments */
+}
+
+/* Styles pour les boutons dans le menu */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Container principal pour centrer le contenu */
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-left: 220px; /* Espace pour le menu sur le côté */
+}
+button.disabled {
+  background-color: #555; /* Couleur gris foncé */
+  cursor: not-allowed; /* Changement du curseur pour indiquer que c'est désactivé */
+  opacity: 0.6; /* Rend le bouton plus transparent pour montrer qu'il est désactivé */
+}
+
+.random-button {
+  background-color: #ff6347; /* Couleur rouge pour attirer l'attention */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1000; /* Assurez-vous qu'il apparaisse au-dessus */
+}

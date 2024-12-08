@@ -91,13 +91,3 @@ button.disabled {
   opacity: 0.6; /* Rend le bouton plus transparent pour montrer qu'il est désactivé */
 }
 
-.random-button {
-  background-color: #ff6347; /* Couleur rouge pour attirer l'attention */
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  z-index: 1000; /* Assurez-vous qu'il apparaisse au-dessus */
-}

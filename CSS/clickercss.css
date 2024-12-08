@@ -2,17 +2,29 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;            
+  overflow: hidden;
+}
+
+body.mode-jour {
+    background-image: url('mode_jour.PNG');
+}
+
+body.mode-nuit {
+    background-image: url('mode_nuit.PNG');
 }
 
 /* Styles pour l'affichage des clics automatiques */
 #autoClickValueDisplay {
-  font-size: 16px; /* Rendre le texte plus petit */
-  color: #333; /* Couleur du texte */
+  font-size: 20px; /* Rendre le texte plus petit */
+  color: #f54307; /* Couleur du texte */
   text-align: center;
   margin-top: 10px; /* Ajustement pour l'espace au-dessus */
   position: fixed;
@@ -32,23 +44,24 @@ body, html {
 #incrementBtn {
   display: block;
   margin: 20px auto;
-  width: 300px;
-  height: 250px;
+  width: 400px;
+  height: 350px;
   cursor: pointer;
 }
 
 /* Styles pour la sidebar des améliorations */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 200px;
-  height: 100%;
-  background-color: #f4f4f4;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+#menu {
+  position: absolute; /* Fixe le menu pour éviter les problèmes de positionnement */
+  left: 0; /* Alignement à gauche */
+  top: 100px; /* Écart du haut de la page */
+  width: 200px; /* Largeur du menu */
+  padding: 20px; /* Espacement interne */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Ombre pour le menu */
+  z-index: 100; /* Pour que le menu soit au-dessus des autres éléments */ 
+  color: #f54307;
 }
 
+/* Styles pour les boutons dans le menu */
 button {
   width: 100%;
   padding: 10px;
@@ -63,12 +76,28 @@ button:hover {
   background-color: #0056b3;
 }
 
-.container {
-  margin-left: 200px;
-  width: calc(100% - 200px);
+/* Container principal pour centrer le contenu */
+#game-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  
+}
+button.disabled {
+  background-color: #555; /* Couleur gris foncé */
+  cursor: not-allowed; /* Changement du curseur pour indiquer que c'est désactivé */
+  opacity: 0.6; /* Rend le bouton plus transparent pour montrer qu'il est désactivé */
+}
+
+.random-button {
+  background-color: #ff6347; /* Couleur rouge pour attirer l'attention */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1000; /* Assurez-vous qu'il apparaisse au-dessus */
 }

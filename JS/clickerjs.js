@@ -566,6 +566,36 @@ function updateAutoClickDisplay() {
   autoClickValueDisplay.textContent = `Clics automatiques : ${autoClickValue} $ par seconde`;
 }
 
+function showRandomImageTemporarily() {
+  // Créer une nouvelle image aléatoire
+  const tempImage = document.createElement('img');
+  tempImage.src = 'Logo_sphimx_octobreRose.png';
+  tempImage.alt = 'Image temporaire';
+  tempImage.style.position = 'absolute';
+  tempImage.style.top = `${Math.random() * 70}%`;
+  tempImage.style.right = `${Math.random() * 83}%`;
+  tempImage.style.zIndex = 1000;
+  tempImage.style.width = '150px';
+  tempImage.style.height = '15f0px';
+  tempImage.style.cursor = 'pointer'; // Change le curseur pour indiquer qu'il est cliquable
+
+  // Ajouter un événement de clic pour gagner 100 $
+  tempImage.addEventListener('click', () => {
+    counter += 100; // Ajoute 100 $ au compteur
+    updateCounterDisplay(); // Met à jour l'affichage du compteur
+    document.body.removeChild(tempImage); // Supprime l'image une fois cliquée
+  });
+
+  // Ajouter l'image au corps de la page
+  document.body.appendChild(tempImage);
+
+  // Supprimer l'image après une courte durée si elle n'est pas cliquée
+  setTimeout(() => {
+    if (document.body.contains(tempImage)) {
+      document.body.removeChild(tempImage);
+    }
+  }, 2000); // Durée en millisecondes (ici 2 seconde)
+}
 
 // Sauvegarde avant la fermeture de la page
 window.addEventListener('beforeunload', (event) => {
